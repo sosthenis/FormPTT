@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escolha Única</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<h1>Escolha Única</h1>
+<p>Cada usuário pode escolher apenas uma opção. Também é possível criar uma nova.</p>
+
+<input id="nome" placeholder="Seu nome">
+
+<select id="opcao">
+<option value="">Selecione...</option>
+<option>Opção A</option>
+<option>Opção B</option>
+<option>Opção C</option>
+<option value="__nova__">➕ Criar nova opção</option>
+</select>
+
+<input id="nova" placeholder="Nova opção" style="display:none">
+
+<button onclick="enviar()">Enviar</button>
+
+<div id="msg"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
