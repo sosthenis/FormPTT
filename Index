@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolha Única</title>
+</head>
+<body>
+  <h1>Escolha Única</h1>
+
+  <p>Selecione uma opção ou crie uma nova.</p>
+
+  <input id="nome" placeholder="Seu nome"><br><br>
+
+  <select id="opcao">
+    <option value="">Selecione...</option>
+    <option>Opção A</option>
+    <option>Opção B</option>
+    <option>Opção C</option>
+    <option value="nova">Criar nova opção</option>
+  </select><br><br>
+
+  <input id="novaOpcao" placeholder="Nova opção" style="display:none;"><br><br>
+
+  <button onclick="enviar()">Enviar escolha</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    const opcao = document.getElementById("opcao");
+    const novaOpcao = document.getElementById("novaOpcao");
+
+    opcao.addEventListener("change", function () {
+      novaOpcao.style.display = this.value === "nova" ? "block" : "none";
+    });
+
+    function enviar() {
+      const nome = document.getElementById("nome").value.trim();
+      let escolha = opcao.value;
+
+      if (!nome) {
+        mensagem.innerText = "Informe seu nome.";
+        return;
+      }
+
+      if (!escolha) {
+        mensagem.innerText = "Selecione uma opção.";
+        return;
+      }
+
+      if (escolha === "nova") {
+        escolha = novaOpcao.value.trim();
+
+        if (!escolha) {
+          mensagem.innerText = "Digite a nova opção.";
+          return;
+        }
+      }
+
+      if (localStorage.getItem("jaVotou")) {
+        mensagem.innerText = "Você já fez sua escolha.";
+        return;
+      }
+
+      localStorage.setItem("jaVotou", "sim");
+      localStorage.setItem("nome", nome);
+      localStorage.setItem("escolha", escolha);
+
+      mensagem.innerText = "Escolha registrada: " + escolha;
+    }
+  </script>
+</body>
+</html>
