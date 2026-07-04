@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Escolha Única</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escolha Única</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="container">
-<h1>Escolha Única</h1>
-<p>Cada usuário pode escolher apenas uma opção. Também é possível criar uma nova.</p>
+  <main class="app">
+    <section class="card">
+      <div class="top">
+        <div>
+          <h1>Escolha Única</h1>
+          <p>Escolha uma opção disponível ou cadastre uma nova. Cada usuário vota uma única vez.</p>
+        </div>
+        <button id="btnAdmin" class="ghost">Admin</button>
+      </div>
 
-<input id="nome" placeholder="Seu nome">
+      <form id="formVoto">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" autocomplete="name" placeholder="Digite seu nome" required />
 
-<select id="opcao">
-<option value="">Selecione...</option>
-<option>Opção A</option>
-<option>Opção B</option>
-<option>Opção C</option>
-<option value="__nova__">➕ Criar nova opção</option>
-</select>
+        <label>Opções disponíveis</label>
+        <div id="opcoes" class="opcoes"></div>
 
-<input id="nova" placeholder="Nova opção" style="display:none">
+        <details class="nova-box">
+          <summary>+ Criar nova opção</summary>
+          <input id="novaOpcao" type="text" placeholder="Digite a nova opção" />
+          <small>Ao preencher este campo, a nova opção será automaticamente escolhida por você.</small>
+        </details>
 
-<button onclick="enviar()">Enviar</button>
+        <button type="submit" class="primary">Enviar minha escolha</button>
+      </form>
 
-<div id="msg"></div>
-</div>
-<script src="app.js"></script>
+      <div id="msg" class="msg"></div>
+    </section>
+
+    <section id="painelAdmin" class="card hidden">
+      <h2>Painel administrativo</h2>
+
+      <div class="row">
+        <input id="opcaoAdmin" type="text" placeholder="Nova opção inicial" />
+        <button id="addOpcao" class="secondary">Adicionar opção</button>
+      </div>
+
+      <h3>Opções</h3>
+      <div id="listaAdmin"></div>
+
+      <h3>Respostas</h3>
+      <div id="respostas"></div>
+
+      <button id="exportar" class="ghost full">Exportar CSV</button>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
